@@ -13,6 +13,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
   - [ ] Add prod compose files
     - [x] Add traefik
     - [x] Add authentik outpost
+    - [x] Add postgress
     - [ ] Add Jellyfin
     - [ ] Add Immich
     - [ ] Add *arr stack
