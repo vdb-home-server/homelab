@@ -1,0 +1,79 @@
+---
+services:
+  nextcloud:
+    image: nextcloud:32.0.5-apache
+    container_name: nextcloud
+    restart: unless-stopped
+
+    depends_on:
+      - redis-nextcloud
+
+    networks:
+      - frontend
+      - backend
+
+    volumes:
+      - ./config:/var/www/html
+      - ${NFS_MOUNT}:/var/www/html/data
+
+    environment:
+      - POSTGRES_DB=${NEXTCLOUD_DB}
+      - POSTGRES_USER=${NEXTCLOUD_USER}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_PASSWORD}
+      - POSTGRES_HOST=postgres:5432
+
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.prod.vdbhome.ovh
+      - TRUSTED_PROXIES=0.0.0.0/0
+      - OVERWRITEPROTOCOL=https
+      - OVERWRITECLIURL=https://cloud.prod.vdbhome.ovh
+
+      - REDIS_HOST=redis-nextcloud
+      - REDIS_HOST_PORT=6379
+
+      - OIDC_LOGIN_PROVIDER_URL=https://auth.ha.vdbhome.ovh/application/o/${OIDC_LOGIN_PROVIDER_SLUG}/
+      - OIDC_LOGIN_CLIENT_ID=${OIDC_LOGIN_CLIENT_ID}
+      - OIDC_LOGIN_CLIENT_SECRET=${OIDC_LOGIN_CLIENT_SECRET}
+      - OIDC_LOGIN_BUTTON_TEXT="Login with Authentik"
+      - OIDC_LOGIN_DISABLE_PASSWORD_LOGIN=false
+      - OIDC_LOGIN_AUTO_CREATE_USERS=true
+
+      - PHP_MEMORY_LIMIT=512M
+
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nextcloud-https.rule=Host(`cloud.prod.vdbhome.ovh`)
+      - traefik.http.routers.nextcloud-https.entrypoints=websecure
+      - traefik.http.routers.nextcloud-https.tls.certresolver=cloudflare
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network 
+      - traefik.http.routers.nextcloud-https.service=nextcloud-https-svc
+      - traefik.http.services.nextcloud-https-svc.loadbalancer.server.port=80 # even if the port is 80
+
+      - traefik.http.middlewares.nextcloud-headers.headers.customrequestheaders.X-Forwarded-Proto=https
+      - traefik.http.routers.nextcloud-https.middlewares=nextcloud-headers 
+
+
+    command: >
+      sh -c "
+        until php occ status >/dev/null 2>&1; do sleep 2; done &&
+        su -s /bin/sh www-data -c 'php occ app:install oidc_login || true' &&
+        su -s /bin/sh www-data -c 'php occ app:enable oidc_login || true' &&
+        su -s /bin/sh www-data -c "php occ config:system:set memcache.locking --value='\OC\Memcache\Redis'" &&
+        su -s /bin/sh www-data -c "php occ config:system:set memcache.distributed --value='\OC\Memcache\Redis'" &&
+        apache2-foreground
+      "
+
+
+  redis-nextcloud:
+    image: redis:7-alpine
+    container_name: redis-nextcloud
+    restart: unless-stopped
+    command: redis-server --save "" --appendonly no
+
+    networks:
+      - backend
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
