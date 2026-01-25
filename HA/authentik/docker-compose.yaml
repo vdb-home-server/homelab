@@ -17,6 +17,7 @@ services:
     image: ghcr.io/goauthentik/server:2025.12.1
     labels:
     - traefik.http.routers.authentik-https.tls=true
+    - traefik.docker.network=frontend
     - traefik.http.routers.authentik-https.tls.certresolver=cloudflare
     - traefik.http.routers.authentik-https.rule=Host("auth.ha.vdbhome.ovh")
     - traefik.http.routers.authentik-https.entrypoints=websecure

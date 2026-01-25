@@ -21,6 +21,7 @@ services:
       - backend
     labels:
       - traefik.enable=true
+      - traefik.docker.network=frontend
       # Main ui
       - traefik.http.routers.vaultwarden-https.tls=true
       - traefik.http.routers.vaultwarden-https.tls.certresolver=cloudflare

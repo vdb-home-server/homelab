@@ -9,6 +9,7 @@ services:
     #   - "3001:3001"
     labels:
     - traefik.enable=true
+    - traefik.docker.network=frontend
     - traefik.http.routers.uptimekuma-https.middlewares=authentik@file
     - traefik.http.routers.uptimekuma-https.tls=true
     - traefik.http.routers.uptimekuma-https.tls.certresolver=cloudflare

@@ -12,6 +12,7 @@ services:
       - TZ=Europe/Brussels
     labels:
       - traefik.enable=true
+      - traefik.docker.network=frontend
       - traefik.http.routers.gotify-https.tls=true
       - traefik.http.routers.gotify-https.tls.certresolver=cloudflare
       - traefik.http.routers.gotify-https.rule=Host("gotify.ha.vdbhome.ovh")
