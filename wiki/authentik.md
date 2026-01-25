@@ -69,4 +69,7 @@ labels:
 
 After that create a proxy provider in the authentik dashboard. Chose ```Forward auth (single application)``` and in the ```external host``` field type the full url of the webserver (eg: https://traefik.ha.vdbhome.ovh) and click finish.
 Than create an application in the authentik dashboard.
-In ```Outposts``` select the outpost where the app you want to put behind the proxy auth is running, click on edit and add the application you just created.gi
+In ```Outposts``` select the outpost where the app you want to put behind the proxy auth is running, click on edit and add the application you just created.
+
+## Setting up extra outposts
+Create the provider and application in the authentik dashboard. After that create an outpost, give it a name (```proxy-test```) and select the type and applications you want to send through there and click on create. On the newly created outpost click on ```View Deployment Info``` and copy the outpost token. In the env file of the outpost machine set the enviroment variable ```AUTHENTIK_TOKEN``` to the token you just copied

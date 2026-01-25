@@ -1,0 +1,20 @@
+---
+services:
+  authentik_proxy:
+    image: ghcr.io/goauthentik/proxy:2025.12.1
+    container_name: authentik-proxy-prod
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    networks:
+    - backend
+    environment:
+      - AUTHENTIK_HOST=https://authentik.ha.vdbhome.ovh
+      - AUTHENTIK_TOKEN=${AUTHENTIK_TOKEN}
+      - AUTHENTIK_INSECURE=false
+      - AUTHENTIK_LOG_LEVEL=info
+
+networks:
+  backend:
+    external: true
