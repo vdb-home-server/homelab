@@ -64,7 +64,7 @@ Make sure that in the traefik compose file the ```./config/:/etc/traefik/conf/:r
 Add the folowing label to the compose file of the app you want to put behind the proxy auth:
 ```yaml
 labels:
-    - traefik.http.routers.<router name>.middlewares=authentik
+    - traefik.http.routers.<router name>.middlewares=authentik@file
 ```
 
 After that create a proxy provider in the authentik dashboard. Chose ```Forward auth (single application)``` and in the ```external host``` field type the full url of the webserver (eg: https://traefik.ha.vdbhome.ovh) and click finish.
