@@ -9,10 +9,15 @@ labels:
     # only to open it via http
     - traefik.http.routers.<router name http>.rule=Host("<url to the app>")
     - traefik.http.routers.<router name http>.entrypoints=web
+
+    # defaults to port 80, so only change when the port the app is exposed in is not port 80
+    - traefik.http.routers.<router name http>.service=<service name http>
+    - traefik.http.services.<service name http>.loadbalancer.server.port=<port>
 ```
 
-```<router name http>``` can be set to whatever you like, I will use naming convention ```<app name>-http``` eg ```traefik-https```.
+```<router name http>``` can be set to whatever you like, I will use naming convention ```<app name>-http``` eg ```traefik-http```.
 ```<url to the app>``` should be the full url to the app, including the lxc it's running in, so ```<app name>.<prod, test, ha>.vdbhome.ovh``` eg ```traefik.prod.vdbhome.ovh```.
+```<service name http>``` should be the name of the service, this can be anything. Our convention is ```<app name>-http-svc```, eg ```traefik-http-svc```.
 
 
 ## When to restart
