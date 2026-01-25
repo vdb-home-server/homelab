@@ -19,6 +19,15 @@ labels:
 ```<url to the app>``` should be the full url to the app, including the lxc it's running in, so ```<app name>.<prod, test, ha>.vdbhome.ovh``` eg ```traefik.prod.vdbhome.ovh```.
 ```<service name http>``` should be the name of the service, this can be anything. Our convention is ```<app name>-http-svc```, eg ```traefik-http-svc```.
 
+## Best practices
+Add the following labels just to be sure traefik doesn't fuck up
+```yaml
+labels:
+    - traefik.docker.network=frontend # This makes sure traefik uses the right docker network 
+    - traefik.http.routers.<router name>.service=<service name http>
+    - traefik.http.services.<service name>.loadbalancer.server.port=<port> # even if the port is 80
+```
+
 
 ## When to restart
 The traefik container monitors the docker socket (see volume ```/var/run/docker.sock:/var/run/docker.sock``` and the docker provider in ```./config/traefik.yaml```), so when a new app is launched with the correct labels the traefik container doesn't need to be restarted. When the labels of an app are changed, that specific app needs to be restarted before it applies.
