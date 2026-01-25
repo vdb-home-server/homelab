@@ -14,6 +14,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
     - [x] Add traefik
     - [x] Add authentik outpost
     - [x] Add postgress
+    - [x] Add nextcloud
     - [ ] Add Jellyfin
     - [ ] Add Immich
     - [ ] Add *arr stack
@@ -25,7 +26,6 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [ ] Add gluetun
       - [ ] Add NZBget
       - [ ] Add qBitTorrent
-    - [ ] Add nextcloud
     - [ ] Add backvault
     - [ ] Add restic
 - [ ] Add further CI/CD
