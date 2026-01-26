@@ -23,7 +23,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [ ] Add sonarr
       - [ ] Add jellyseer/overseer (they are currently merging)
       - [ ] Add LazyLibrarian
-      - [ ] Add gluetun
+      - [x] Add gluetun
       - [ ] Add NZBget
       - [ ] Add qBitTorrent
     - [ ] Add backvault
