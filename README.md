@@ -24,8 +24,8 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [ ] Add jellyseer/overseer (they are currently merging)
       - [ ] Add LazyLibrarian
       - [x] Add gluetun
-      - [ ] Add NZBget
-      - [ ] Add qBitTorrent
+      - [x] Add NZBget
+      - [x] Add qBitTorrent
     - [ ] Add backvault
     - [ ] Add restic
 - [ ] Add further CI/CD
