@@ -19,3 +19,16 @@ Manually create 2 docker networks.
 docker network create frontend
 docker network create backend
 ```
+
+## Disable builtin-auth
+- prowlarr
+- sonarr
+- bookshelf/readarr
+- radarr
+
+## Change auth from built-in to authentik
+### In the UI
+- jellyseerr
+
+### In the env vars
+- nextcloud

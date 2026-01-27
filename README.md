@@ -15,17 +15,18 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
     - [x] Add authentik outpost
     - [x] Add postgress
     - [x] Add nextcloud
-    - [ ] Add Jellyfin
-    - [ ] Add Immich
-    - [ ] Add *arr stack
-      - [ ] Add prowlarr
-      - [ ] Add radarr
-      - [ ] Add sonarr
-      - [ ] Add jellyseer/overseer (they are currently merging)
-      - [ ] Add LazyLibrarian
+    - [x] Add *arr stack
+      - [x] Add prowlarr
+      - [x] Add radarr
+      - [x] Add sonarr
+      - [x] Add bookshelf (readarr fork, check if it stays active)
+      - [x] Add jellyseer/overseer (they are currently merging)
+      - [x] Add LazyLibrarian
       - [x] Add gluetun
       - [x] Add NZBget
       - [x] Add qBitTorrent
+    - [ ] Add Jellyfin
+    - [ ] Add Immich
     - [ ] Add backvault
     - [ ] Add restic
 - [ ] Add further CI/CD
