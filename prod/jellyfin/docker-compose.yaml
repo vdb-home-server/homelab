@@ -20,6 +20,8 @@ services:
       #   target: /usr/local/share/fonts/custom
       #   read_only: true
     restart: "unless-stopped"
+    devices:
+      - /dev/dri:/dev/dri # pass igpu through
     environment:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.prod.vdbhome.ovh
     labels:
