@@ -26,7 +26,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [x] Add NZBget
       - [x] Add qBitTorrent
     - [x] Add Jellyfin
-    - [ ] Add Immich
+    - [x] Add Immich
     - [ ] Add backvault
     - [ ] Add restic
 - [ ] Add further CI/CD
