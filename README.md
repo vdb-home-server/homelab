@@ -25,7 +25,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [x] Add gluetun
       - [x] Add NZBget
       - [x] Add qBitTorrent
-    - [ ] Add Jellyfin
+    - [x] Add Jellyfin
     - [ ] Add Immich
     - [ ] Add backvault
     - [ ] Add restic

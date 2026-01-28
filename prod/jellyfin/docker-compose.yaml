@@ -1,0 +1,39 @@
+---
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:10.11.6
+    container_name: jellyfin
+    # Optional - specify the uid and gid you would like Jellyfin to use instead of root
+    user: 1000:1000
+    # ports:
+    #   - 8096:8096/tcp # webui
+    #   - 7359:7359/udp # for autodiscovery in the lan
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - type: bind
+        source: ${NFS_MEDIA_MOUNT}
+        target: /media
+      # Optional - extra fonts to be used during transcoding with subtitle burn-in
+      # - type: bind
+      #   source: /path/to/fonts
+      #   target: /usr/local/share/fonts/custom
+      #   read_only: true
+    restart: "unless-stopped"
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.prod.vdbhome.ovh
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin-https.tls=true
+      - traefik.http.routers.jellyfin-https.tls.certresolver=cloudflare
+      - traefik.http.routers.jellyfin-https.rule=Host("jellyfin.prod.vdbhome.ovh")
+      - traefik.http.routers.jellyfin-https.entrypoints=websecure
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
+      - traefik.http.routers.jellyfin-https.service=jellyfin-https-svc
+      - traefik.http.services.jellyfin-https-svc.loadbalancer.server.port=8096 # even if the port is 80
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
