@@ -1,7 +1,9 @@
 # Welcome
+
 This repo exists solely to make the setup and versioning of our homelab easier. At the moment there are just the config files for the high availability cluster. In the near future I will add the rest of the config files. After everything is setup I also will look into adding workflows and ansible playbooks to ease the deploy process even more.
 
 # ToDo's
+
 - [ ] Add compose files
   - [x] Add HA compose files
     - [x] Add authentik
@@ -15,7 +17,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
     - [x] Add authentik outpost
     - [x] Add postgress
     - [x] Add nextcloud
-    - [x] Add *arr stack
+    - [x] Add \*arr stack
       - [x] Add prowlarr
       - [x] Add radarr
       - [x] Add sonarr
@@ -29,6 +31,13 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
     - [x] Add Immich
     - [ ] Add backvault
     - [ ] Add restic
+- [ ] Switch HA to k3s
+  - [ ] Authentik
+  - [ ] uptime kuma
+  - [ ] traefik
+  - [ ] gotify
+  - [ ] postgres
+  - [ ] vaultwarden
 - [ ] Add further CI/CD
   - [ ] Add ansible playbooks
   - [ ] Research how to automate it without security risks
