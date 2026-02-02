@@ -1,0 +1,32 @@
+image:
+  repository: louislam/uptime-kuma
+  tag: "2.0.2"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 3001
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 5Gi
+  mountPath: /app/data
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  hosts:
+    - host: status.ha.vdbhome.ovh
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - status.ha.vdbhome.ovh
+
+resources: {}

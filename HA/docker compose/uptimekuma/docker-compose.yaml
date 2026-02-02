@@ -1,0 +1,25 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2.0.2
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    # ports:
+    #   - "3001:3001"
+    labels:
+    - traefik.enable=true
+    - traefik.docker.network=frontend
+    - traefik.http.routers.uptimekuma-https.middlewares=authentik@file
+    - traefik.http.routers.uptimekuma-https.tls=true
+    - traefik.http.routers.uptimekuma-https.tls.certresolver=cloudflare
+    - traefik.http.routers.uptimekuma-https.rule=Host("status.ha.vdbhome.ovh")
+    - traefik.http.routers.uptimekuma-https.entrypoints=websecure
+    - traefik.http.routers.uptimekuma-https.service=uptimekuma-https-svc
+    - traefik.http.services.uptimekuma-https-svc.loadbalancer.server.port=3001
+    networks:
+      - frontend
+  
+networks:
+  frontend:
+    external: true
