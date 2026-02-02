@@ -22,7 +22,6 @@ services:
       - traefik.http.routers.traefik-test-https.rule=Host('traefik.test.vdbhome.ovh')
       - traefik.http.routers.traefik-test-https.entrypoints=websecure
       - traefik.http.routers.traefik-test-https.tls=true
-
       - traefik.http.routers.traefik-test-https.middlewares=authentik@file
       - traefik.http.routers.traefik-test-https.service=api@internal
 
