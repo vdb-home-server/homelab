@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./config/:/etc/traefik/conf/:ro
-      - /var/traefik/certs/:./certs/:rw
+      - ./certs/:/etc/traefik/certs/:rw
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik-test-https.rule=Host('traefik.test.vdbhome.ovh')
