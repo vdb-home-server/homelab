@@ -24,7 +24,6 @@ services:
       - traefik.http.routers.traefik-test-https.tls=true
 
       - traefik.http.routers.traefik-test-https.middlewares=authentik@file
-      # Put the api service behind the middleware
       - traefik.http.routers.traefik-test-https.service=api@internal
 
 networks:
