@@ -2,7 +2,7 @@
 
 This repo exists solely to make the setup and versioning of our homelab easier. At the moment there are just the config files for the high availability cluster. In the near future I will add the rest of the config files. After everything is setup I also will look into adding workflows and ansible playbooks to ease the deploy process even more.
 
-# ToDo's
+## ToDo's
 
 - [ ] Add compose files
   - [x] Add HA compose files
@@ -22,7 +22,7 @@ This repo exists solely to make the setup and versioning of our homelab easier. 
       - [x] Add radarr
       - [x] Add sonarr
       - [x] Add bookshelf (readarr fork, check if it stays active)
-      - [x] Add jellyseer/overseer (they are currently merging)
+      - [x] Add jellyseerr/overseerr (they are currently merging)
       - [x] Add LazyLibrarian
       - [x] Add gluetun
       - [x] Add NZBget
