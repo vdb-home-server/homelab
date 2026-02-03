@@ -1,4 +1,2 @@
 resources:
-  - ingress
-  - cert-manager
   - kube-vip
