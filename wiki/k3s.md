@@ -1,7 +1,9 @@
 # Kubernetes
+
 K3s is a lightweight kubernetes distro/flavour we use for the services we want in high availability (HA). This is so in case our home node dies or goes for some reason or another some services have the least possible downtime. 
 
 ## Naming
+
 - Cluster: all the machines on which this kubernetes instance runs
 - Node: one of the machines (physical or vm) in this cluster
 - Pod: one container that is running
@@ -15,33 +17,47 @@ K3s is a lightweight kubernetes distro/flavour we use for the services we want i
 - PersistentVolumeClaim (PVC): request that storage (we mostly create PVC's and let kubernetes handle the rest)
 
 ## Setup
-### The first node
-On one of the nodes (doesn't matter which one) run the following.
+
+To install k3s you first make a config file and than simply run the installer script.
+### The config file
+
+The config file should be stored in ```/etc/rancher/k3s/config.yaml```.
+You can easily make this with the following command:
 ```bash
-curl -sfL https://get.k3s.io | sh -s - server \
-  --cluster-init \
-  --node-ip <NODE1_IP> \
-  --advertise-address <NODE1_IP> \
-  --tls-san <NODE1_DNS_NAME> \
-  --tls-san <K3S_API_DNS_NAME> \
-  --write-kubeconfig-mode 644
+sudo mkdir -p /etc/rancher/k3s
+sudo nano /etc/rancher/k3s/config.yaml
 ```
-Replace ```<NODE1_IP>``` with the netbird ip address of the current node. ```<NODE1_DNS_NAME>``` and ```<K3S_API_DNS_NAME>``` should be replaced with the dns name of the node and k3s api respectivly (so ```node1.k3s.vdbhome.ovh``` and ```api.k3s.vdbhome.ovh``` in our case.)
-After that you get the private cluster token needed to join the cluster with the folowing command:
-```bash
-cat /var/lib/rancher/k3s/server/node-token
+#### The first node
+
+This config file is only for the first node, so the cluster is properly made and k3s is setup. After that this node behaves exactly the same as any other node added to the cluster.
+```yaml
+cluster-init: true
+node-name: <NODE NAME>
+node-ip: <NODE IP>
+advertise-address: <NODE IP>
+
+tls-san:
+  - cluster.vdbhome.ovh
+  - <NODE DNS>
 ```
 
-### Joining the cluster
-On all of the other nodes run the following to join the kubernetes cluster. 
-```bash
-curl -sfL https://get.k3s.io | sh -s - server \
-  --server <K3S_API_DNS_NAME> \
-  --token <TOKEN> \
-  --node-ip <NODE_IP> \
-  --advertise-address <NODE_IP> \
-  --tls-san <K3S_API_DNS_NAME>
-```
-Replace ```<NODE_IP>``` with the ip address of the current node (NOT NODE 1) and ```<K3S_API_DNS_NAME>``` with the dns name of the kubernetes api and ```<TOKEN>``` with the token you got from node 1. 
+#### Other nodes
 
-## Kube-vip
+To add other nodes you will need to get the cluster token, on a node that already is in the cluster run: 
+```bash
+sudo cat /var/lib/rancher/k3s/server/token
+```
+and replace ```<TOKEN>``` with it in the config file.
+```yaml                                                                      
+server: https://cluster.vdbhome.ovh:6443
+token: <TOKEN>
+
+node-name: <NODE NAME>
+node-ip: <NODE IP>
+advertise-address: <NODE IP>
+
+tls-san:
+  - cluster.vdbhome.ovh
+  - <NODE DNS>
+```
+
