@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ../../infrastructure/kube-vip
+  path: ./infrastructure/kube-vip
   prune: true
   sourceRef:
     kind: GitRepository
