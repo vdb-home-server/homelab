@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
   - cert-manager.yaml
-  - kube-vip.yaml
+  - traefik-dashboard.yaml

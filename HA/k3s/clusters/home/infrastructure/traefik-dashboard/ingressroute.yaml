@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`traefik.cluster.vdbhome.ovh`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: traefik-dashboard-tls
