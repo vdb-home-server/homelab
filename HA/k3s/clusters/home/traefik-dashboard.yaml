@@ -9,5 +9,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster-config
+    name: flux-system
   targetNamespace: kube-system
