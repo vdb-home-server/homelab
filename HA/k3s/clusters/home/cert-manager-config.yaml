@@ -9,7 +9,7 @@ spec:
   prune: true
   wait: true
   timeout: 5m
-  validation: client
+  skipDryRunOnMissingResource: true
   sourceRef:
     kind: GitRepository
     name: flux-system
