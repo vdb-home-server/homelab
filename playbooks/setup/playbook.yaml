@@ -1,0 +1,38 @@
+---
+- name: Setup Ubuntu server with NetBird
+  hosts: ubuntu
+  become: true
+  gather_facts: true
+
+  vars:
+    netbird_setup_key: ""
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - git
+        state: present
+
+    - name: Install NetBird
+      shell: |
+        curl -fsSL https://pkgs.netbird.io/install.sh | sh
+      args:
+        executable: /bin/bash
+
+    - name: Bring NetBird up using setup key
+      shell: |
+        netbird up --setup-key {{ netbird_setup_key }}
+      args:
+        executable: /bin/bash
+      when: netbird_setup_key | length > 0
