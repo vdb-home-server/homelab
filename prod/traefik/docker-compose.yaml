@@ -19,15 +19,13 @@ services:
       - ./certs/:/var/traefik/certs/:rw
     labels:
       - traefik.enable=true
-      - traefik.http.routers.traefik-prod-https.rule=Host('traefik.prod.vdbhome.ovh')
+      - traefik.http.routers.traefik-prod-https.rule=Host("traefik.prod.vdbhome.ovh")
       - traefik.http.routers.traefik-prod-https.entrypoints=websecure
       - traefik.http.routers.traefik-prod-https.tls=true
 
       - traefik.http.routers.traefik-prod-https.middlewares=authentik@file
       # Put the api service behind the middleware
       - traefik.http.routers.traefik-prod-https.service=api@internal
-    security_opt:
-      - apparmor:unconfirmed
 
 networks:
   frontend:
