@@ -18,7 +18,7 @@ services:
       - .env
 
     environment:
-      - DB_HOST=${DB_HOST}
+      - DB_HOSTNAME=${DB_HOSTNAME}
       - DB_PORT=${DB_PORT}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
