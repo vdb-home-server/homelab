@@ -9,14 +9,14 @@ services:
       - backend
     ports:
       - "80:80"
-      - '443:443'
+      - "443:443"
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./config/:/etc/traefik/conf/:ro
-      - /var/traefik/certs/:./certs/:rw
+      - ./certs/:/var/traefik/certs/:rw
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik-prod-https.rule=Host('traefik.prod.vdbhome.ovh')
