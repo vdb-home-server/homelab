@@ -31,7 +31,7 @@ services:
       - traefik.docker.network=frontend
 
       #qBitTorrent
-      - traefik.http.routers.torrent-https.rule=Host('torrent.prod.vdbhome.ovh')
+      - traefik.http.routers.torrent-https.rule=Host("torrent.prod.vdbhome.ovh")
       - traefik.http.routers.torrent-https.entrypoints=websecure
       - traefik.http.routers.torrent-https.tls=true
       - traefik.http.routers.torrent-https.tls.certresolver=cloudflare
@@ -39,7 +39,7 @@ services:
       - traefik.http.services.torrent-https-svc.loadbalancer.server.port=8080
 
       # NZBget
-      - traefik.http.routers.nzb-https.rule=Host('nzb.prod.vdbhome.ovh')
+      - traefik.http.routers.nzb-https.rule=Host("nzb.prod.vdbhome.ovh")
       - traefik.http.routers.nzb-https.entrypoints=websecure
       - traefik.http.routers.nzb-https.tls=true
       - traefik.http.routers.nzb-https.tls.certresolver=cloudflare
