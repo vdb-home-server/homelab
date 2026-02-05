@@ -8,6 +8,8 @@ services:
     # ports:
     #   - 8096:8096/tcp # webui
     #   - 7359:7359/udp # for autodiscovery in the lan
+    expose:
+      - "8096"
     volumes:
       - ./config:/config
       - ./cache:/cache
