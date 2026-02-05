@@ -1,8 +1,7 @@
 ---
 services:
   gluetun:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: qmcgaw/gluetun
     container_name: gluetun
@@ -48,8 +47,7 @@ services:
       - traefik.http.services.nzb-https-svc.loadbalancer.server.port=6789
 
   qbittorrent:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: lscr.io/linuxserver/qbittorrent
     container_name: qbittorrent
@@ -67,8 +65,7 @@ services:
     restart: unless-stopped
 
   nzbget:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: lscr.io/linuxserver/nzbget
     container_name: nzbget

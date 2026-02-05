@@ -1,8 +1,7 @@
 ---
 services:
   prowlarr:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: lscr.io/linuxserver/prowlarr:2.3.0
     container_name: prowlarr
@@ -29,8 +28,7 @@ services:
       - traefik.http.routers.prowlarr-https.middlewares=authentik@file
 
   sonarr:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: lscr.io/linuxserver/sonarr:4.0.16
     container_name: sonarr
@@ -61,8 +59,7 @@ services:
       - traefik.http.routers.sonarr-https.middlewares=authentik@file
 
   radarr:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: lscr.io/linuxserver/radarr:6.0.4
     container_name: radarr
@@ -93,8 +90,7 @@ services:
       - traefik.http.routers.radarr-https.middlewares=authentik@file
 
   jellyseerr:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: ghcr.io/fallenbagel/jellyseerr:2.0.7
     container_name: jellyseerr
@@ -122,8 +118,7 @@ services:
       - traefik.http.services.jellyseerr-https-svc.loadbalancer.server.port=5055
 
   bookshelf:
-    security_opt:
-      - apparmor:unconfirmed
+
 
     image: ghcr.io/pennydreadful/bookshelf:hardcover-v0.4.20.107
     container_name: bookshelf

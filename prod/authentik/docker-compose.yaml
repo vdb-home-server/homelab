@@ -14,8 +14,7 @@ services:
       - AUTHENTIK_TOKEN=${AUTHENTIK_TOKEN}
       - AUTHENTIK_INSECURE=false
       - AUTHENTIK_LOG_LEVEL=info
-    security_opt:
-      - apparmor:unconfirmed
+
 
 networks:
   backend:
