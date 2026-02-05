@@ -16,7 +16,11 @@ services:
       - .env
 
     environment:
-      - DB_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}:${DB_PORT}/${DB_NAME}?sslmode=disable
+      - DB_HOSTNAME=${DB_HOSTNAME}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
       - IMMICH_MACHINE_LEARNING_URL=http://immich-machine-learning:3003
       - IMMICH_PUBLIC_URL=https://immich.prod.vdbhome.ovh
 
