@@ -136,7 +136,28 @@ services:
       - traefik.http.routers.bookshelf-https.tls.certresolver=cloudflare
       - traefik.http.routers.bookshelf-https.service=bookshelf-https-svc
       - traefik.http.services.bookshelf-https-svc.loadbalancer.server.port=8787
-#      - traefik.http.routers.bookshelf-https.middlewares=authentik@file
+  #      - traefik.http.routers.bookshelf-https.middlewares=authentik@file
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:v3.46
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Europe/Brussels
+    # ports:
+    #   - 8191:8191
+    networks:
+      - frontend
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=frontend
+      - traefik.http.routers.flaresolverr-https.rule=Host("flaresolverr.prod.vdbhome.ovh")
+      - traefik.http.routers.flaresolverr-https.entrypoints=websecure
+      - traefik.http.routers.flaresolverr-https.tls=true
+      - traefik.http.routers.flaresolverr-https.tls.certresolver=cloudflare
+      - traefik.http.routers.flaresolverr-https.service=flaresolverr-https-svc
+      - traefik.http.services.flaresolverr-https-svc.loadbalancer.server.port=8191
+#      - traefik.http.routers.flaresolverr-https.middlewares=authentik@file
 
 networks:
   frontend:
