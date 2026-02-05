@@ -96,7 +96,7 @@ services:
     security_opt:
       - apparmor:unconfirmed
 
-    image: fallenbagel/seerr:2.0.7
+    image: ghcr.io/fallenbagel/jellyseerr:2.0.7
     container_name: jellyseerr
     environment:
       - TZ=Europe/Brussels
