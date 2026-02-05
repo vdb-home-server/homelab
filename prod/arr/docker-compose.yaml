@@ -91,6 +91,7 @@ services:
       - LOG_LEVEL=info
     volumes:
       - ./config/jellyseerr:/app/config
+      - ${NFS_MEDIA_MOUNT}:/media
     # ports:
     #   - 5055:5055
     networks:
