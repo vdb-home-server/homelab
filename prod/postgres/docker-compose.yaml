@@ -18,6 +18,8 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - backend
+    security_opt:
+      - apparmor:unconfirmed
 
 networks:
   backend:

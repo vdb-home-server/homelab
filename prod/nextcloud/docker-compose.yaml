@@ -71,6 +71,8 @@ services:
 
     networks:
       - backend
+    security_opt:
+      - apparmor:unconfirmed
 
 networks:
   frontend:

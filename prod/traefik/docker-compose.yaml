@@ -26,6 +26,8 @@ services:
       - traefik.http.routers.traefik-prod-https.middlewares=authentik@file
       # Put the api service behind the middleware
       - traefik.http.routers.traefik-prod-https.service=api@internal
+    security_opt:
+      - apparmor:unconfirmed
 
 networks:
   frontend:

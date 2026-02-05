@@ -36,6 +36,9 @@ services:
     networks:
       - frontend
 
+    security_opt:
+      - apparmor:unconfirmed
+
 networks:
   frontend:
     external: true

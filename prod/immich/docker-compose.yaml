@@ -1,5 +1,8 @@
 services:
   immich-server:
+    security_opt:
+      - apparmor:unconfirmed
+      
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:v2.5.0
     restart: unless-stopped
@@ -52,6 +55,9 @@ services:
       - frontend
 
   immich-machine-learning:
+    security_opt:
+      - apparmor:unconfirmed
+      
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:v2.5.0
     restart: unless-stopped
@@ -73,6 +79,9 @@ services:
       - backend
 
   redis:
+    security_opt:
+      - apparmor:unconfirmed
+      
     container_name: immich_redis
     image: docker.io/valkey/valkey:9
     restart: unless-stopped
