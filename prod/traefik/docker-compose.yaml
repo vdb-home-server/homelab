@@ -22,6 +22,7 @@ services:
       - traefik.http.routers.traefik-prod-https.rule=Host("traefik.prod.vdbhome.ovh")
       - traefik.http.routers.traefik-prod-https.entrypoints=websecure
       - traefik.http.routers.traefik-prod-https.tls=true
+      - traefik.http.routers.traefik-prod-https.tls.certresolver=cloudflare
 
       - traefik.http.routers.traefik-prod-https.middlewares=authentik@file
       # Put the api service behind the middleware
