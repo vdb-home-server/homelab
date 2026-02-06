@@ -12,6 +12,9 @@ services:
       - ./cache:/cache
       - /etc/localtime:/etc/localtime:ro
 
+    ports:
+      - 2283:2283 # only for local access, speeds will increase
+
     environment:
       - DB_HOSTNAME=${DB_HOSTNAME}
       - DB_PORT=${DB_PORT}
