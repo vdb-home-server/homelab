@@ -13,6 +13,7 @@ services:
       - AUTHENTIK_ERROR_REPORTING__ENABLED=true
     image: ghcr.io/goauthentik/server:2025.12.1
     labels:
+    - traefik.enable=true
     - traefik.http.routers.authentik-https.tls=true
     - traefik.docker.network=frontend
     - traefik.http.routers.authentik-https.tls.certresolver=cloudflare
