@@ -19,7 +19,7 @@ services:
       - ./certs/:/var/traefik/certs:rw
     labels:
       - traefik.enable=true
-      - traefik.http.routers.traefik-ha-https.rule=Host('traefik.ha.vdbhome.ovh')
+      - traefik.http.routers.traefik-ha-https.rule=Host("traefik.ha.vdbhome.ovh")
       - traefik.http.routers.traefik-ha-https.entrypoints=websecure
       - traefik.http.routers.traefik-ha-https.tls=true
 
