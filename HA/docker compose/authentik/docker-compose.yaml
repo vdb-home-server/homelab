@@ -31,9 +31,6 @@ services:
   worker:
     command: worker
     container_name: authentik-worker
-    depends_on:
-      postgres:
-        condition: service_healthy
     environment:
       - AUTHENTIK_POSTGRESQL__HOST=postgres
       - AUTHENTIK_POSTGRESQL__NAME=${AUTHENTIK_DB}
