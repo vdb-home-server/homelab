@@ -33,9 +33,6 @@ services:
       - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
       - traefik.http.routers.immich-https.service=immich-https-svc
       - traefik.http.services.immich-https-svc.loadbalancer.server.port=2283 # even if the port is 80
-      - traefik.http.services.immich-https-svc.loadbalancer.serverstransport=immich-transport
-      - traefik.http.serverstransports.immich-transport.forwardingtimeouts.responseheadertimeout=900s
-      - traefik.http.serverstransports.immich-transport.forwardingtimeouts.idleconntimeout=900s
 
     depends_on:
       redis:
