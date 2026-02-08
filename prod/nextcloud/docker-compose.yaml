@@ -52,15 +52,7 @@ services:
       - traefik.http.routers.nextcloud-https.middlewares=nextcloud-headers 
 
 
-    command: >
-      sh -c "
-        until php occ status >/dev/null 2>&1; do sleep 2; done &&
-        su -s /bin/sh www-data -c 'php occ app:install oidc_login || true' &&
-        su -s /bin/sh www-data -c 'php occ app:enable oidc_login || true' &&
-        su -s /bin/sh www-data -c "php occ config:system:set memcache.locking --value='\OC\Memcache\Redis'" &&
-        su -s /bin/sh www-data -c "php occ config:system:set memcache.distributed --value='\OC\Memcache\Redis'" &&
-        apache2-foreground
-      "
+
 
 
   redis-nextcloud:
