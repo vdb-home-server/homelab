@@ -6,12 +6,15 @@ services:
     volumes:
       - ./data:/data
     environment:
+      - PROVIDER=local
+      - LOCAL_PATH=/data
       - TTL_DAYS=30
       - MAX_SIZE=10GB      
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.transfersh-https.rule=Host(`transfer.vdbhome.ovh`)"
-      - "traefik.http.routers.transfersh-https.entrypoints=web"
+      - traefik.enable=true
+      - traefik.http.routers.transfersh.rule=Host(`transfer.vdbhome.ovh`)
+      - traefik.http.routers.transfersh.entrypoints=web
+      - traefik.http.services.transfersh.loadbalancer.server.port=8080
     restart: unless-stopped
     networks:
       - frontend
