@@ -7,7 +7,7 @@ services:
       - ./data:/data
     environment:
       - PROVIDER=local
-      - LOCAL_PATH=/data
+      - BASEDIR=/data
       - TTL_DAYS=30
       - MAX_SIZE=10GB      
     labels:
