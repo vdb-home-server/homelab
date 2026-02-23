@@ -1,15 +1,16 @@
 ---
-cloudflared:
-  image: cloudflare/cloudflared:latest
-  container_name: cloudflared
-  restart: unless-stopped
-  networks:
-    - frontend
-  volumes:
-    - ./config:/etc/cloudflared:ro
-  command: tunnel run my-tunnel
-  environment:
-    - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    networks:
+      - frontend
+    volumes:
+      - ./config:/etc/cloudflared:ro
+    command: tunnel run my-tunnel
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
 
 networks:
   frontend:
