@@ -12,11 +12,6 @@ api:
 entryPoints:
   web:
     address: :80
-    http: # auto redirects http traffic to https
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
   websecure:
     address: :443
 
