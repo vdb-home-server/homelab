@@ -1,0 +1,32 @@
+---
+services:
+  traefik:
+    image: traefik:v3.6.7
+    container_name: traefik-test
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+      - '443:443'
+    environment:
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./config/:/etc/traefik/conf/:ro
+      - ./certs/:/etc/traefik/certs/:rw
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik-test-https.rule=Host('traefik.test.vdbhome.ovh')
+      - traefik.http.routers.traefik-test-https.entrypoints=websecure
+      - traefik.http.routers.traefik-test-https.tls=true
+      - traefik.http.routers.traefik-test-https.middlewares=authentik@file
+      - traefik.http.routers.traefik-test-https.service=api@internal
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

@@ -1,0 +1,22 @@
+---
+services:
+  pastebin:
+    image: privatebin/privatebin:latest
+    container_name: pastebin
+    restart: unless-stopped
+    volumes:
+      - ./pastebin/data:/srv/data
+    environment:
+      - HTTP_X_FORWARDED_PROTO=https  
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pastebin-https.rule=Host(`bin.public.vdbhome.ovh`)"
+      - "traefik.http.routers.pastebin-https.entrypoints=websecure"
+      - "traefik.http.routers.pastebin-https.tls=true"
+      - "traefik.http.routers.pastebin-https.tls.certresolver=cloudflare"
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
