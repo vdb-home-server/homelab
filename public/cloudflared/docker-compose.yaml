@@ -9,7 +9,7 @@ cloudflared:
     - ./config:/etc/cloudflared:ro
   command: tunnel run my-tunnel
   environment:
-    - TUNNEL_TOKEN=${CLOUDFLARED_TUNNEL_TOKEN}
+    - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
 
 networks:
   frontend:
