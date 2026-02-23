@@ -16,7 +16,7 @@ services:
       - ./certs/:/etc/traefik/certs/:rw
     labels:
       - traefik.enable=true
-      - traefik.http.routers.traefik-public-http.rule=Host("traefik.public.vdbhome.ovh")
+      - traefik.http.routers.traefik-public-http.rule=Host("traefik-public.vdbhome.ovh")
       - traefik.http.routers.traefik-public-http.entrypoints=web
       - traefik.http.routers.traefik-public-http.service=api@internal
 networks:
