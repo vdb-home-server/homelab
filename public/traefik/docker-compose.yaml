@@ -2,7 +2,7 @@
 services:
   traefik:
     image: traefik:v3.6.7
-    container_name: traefik-test
+    container_name: traefik-public
     restart: unless-stopped
     networks:
       - frontend
@@ -19,11 +19,11 @@ services:
       - ./certs/:/etc/traefik/certs/:rw
     labels:
       - traefik.enable=true
-      - traefik.http.routers.traefik-test-https.rule=Host('traefik.test.vdbhome.ovh')
-      - traefik.http.routers.traefik-test-https.entrypoints=websecure
-      - traefik.http.routers.traefik-test-https.tls=true
-      - traefik.http.routers.traefik-test-https.middlewares=authentik@file
-      - traefik.http.routers.traefik-test-https.service=api@internal
+      - traefik.http.routers.traefik-public-https.rule=Host('traefik.public.vdbhome.ovh')
+      - traefik.http.routers.traefik-public-https.entrypoints=websecure
+      - traefik.http.routers.traefik-public-https.tls=true
+      - traefik.http.routers.traefik-public-https.middlewares=authentik@file
+      - traefik.http.routers.traefik-public-https.service=api@internal
 
 networks:
   frontend:
