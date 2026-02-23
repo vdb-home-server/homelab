@@ -10,10 +10,8 @@ services:
       - MAX_SIZE=10GB      
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.transfersh-https.rule=Host(`transfer.public.vdbhome.ovh`)"
-      - "traefik.http.routers.transfersh-https.entrypoints=websecure"
-      - "traefik.http.routers.transfersh-https.tls=true"
-      - "traefik.http.routers.transfersh-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.transfersh-https.rule=Host(`transfer.vdbhome.ovh`)"
+      - "traefik.http.routers.transfersh-https.entrypoints=web"
     restart: unless-stopped
     networks:
       - frontend
