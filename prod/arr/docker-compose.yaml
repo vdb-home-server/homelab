@@ -34,8 +34,8 @@ services:
       - TZ=Europe/Brussels
     volumes:
       - ./config/sonarr:/config
-      - ${NFS_DOWNLOAD_MOUNT}:/downloads
-      - ${NFS_MEDIA_MOUNT}/tv:/tv
+      - ${NFS_DOWNLOAD_MOUNT}:/data/downloads
+      - ${NFS_MEDIA_MOUNT}/tv:/data/tv
     # ports:
     #   - 8989:8989
     networks:
@@ -63,8 +63,8 @@ services:
       - TZ=Europe/Brussels
     volumes:
       - ./config/radarr:/config
-      - ${NFS_DOWNLOAD_MOUNT}:/downloads
-      - ${NFS_MEDIA_MOUNT}/movies:/movies
+      - ${NFS_DOWNLOAD_MOUNT}:/data/downloads
+      - ${NFS_MEDIA_MOUNT}/movies:/data/movies
     # ports:
     #   - 7878:7878
     networks:
@@ -119,8 +119,8 @@ services:
       - TZ=Europe/Brussels
     volumes:
       - ./config/bookshelf:/config
-      - ${NFS_DOWNLOAD_MOUNT}:/downloads
-      - ${NFS_MEDIA_MOUNT}/books:/books
+      - ${NFS_DOWNLOAD_MOUNT}:/data/downloads
+      - ${NFS_MEDIA_MOUNT}/books:/data/books
     # ports:
     #   - 8787:8787
     networks:
