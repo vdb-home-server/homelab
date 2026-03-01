@@ -41,7 +41,7 @@ services:
 
     labels:
       - traefik.enable=true
-      - traefik.http.routers.nextcloud-https.rule=Host(`cloud.prod.vdbhome.ovh`)
+      - traefik.http.routers.nextcloud-https.rule=Host("cloud.prod.vdbhome.ovh")
       - traefik.http.routers.nextcloud-https.entrypoints=websecure
       - traefik.http.routers.nextcloud-https.tls.certresolver=cloudflare
       - traefik.docker.network=frontend # This makes sure traefik uses the right docker network 
