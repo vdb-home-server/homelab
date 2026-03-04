@@ -19,9 +19,9 @@ services:
     - traefik.http.routers.handbrake-https.rule=Host("handbrake.prod.vdbhome.ovh")
     - traefik.http.routers.handbrake-https.entrypoints=websecure
     - traefik.http.routers.handbrake-https.service=handbrake-https-svc
-    - traefik.http.services.handbrake-https-svc.loadbalancer.server.port=3001
+    - traefik.http.services.handbrake-https-svc.loadbalancer.server.port=3000
     # ports:
-    #   - 3001:3001
+    #   - 3000:3000
     restart: unless-stopped
     networks:
       - frontend
