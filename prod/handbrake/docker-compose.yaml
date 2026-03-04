@@ -1,0 +1,31 @@
+---
+services:
+  handbrake:
+    image: lscr.io/linuxserver/handbrake:latest
+    container_name: handbrake
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./config:/config
+      - ./watch:/watch
+      - ./output:/output
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+    - traefik.enable=true
+    - traefik.docker.network=frontend
+    - traefik.http.routers.handbrake-https.tls=true
+    - traefik.http.routers.handbrake-https.tls.certresolver=cloudflare
+    - traefik.http.routers.handbrake-https.rule=Host("handbrake.ha.vdbhome.ovh")
+    - traefik.http.routers.handbrake-https.entrypoints=websecure
+    - traefik.http.routers.handbrake-https.service=handbrake-https-svc
+    - traefik.http.services.handbrake-https-svc.loadbalancer.server.port=5800
+    # ports:
+    #   - 5800:5800
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
