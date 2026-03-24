@@ -1,0 +1,24 @@
+services:
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # ports:
+    #   - 3000:3000
+    labels:
+    - traefik.enable=true
+    - traefik.docker.network=frontend
+    - traefik.http.routers.wud-https.tls=true
+    - traefik.http.routers.wud-https.tls.certresolver=cloudflare
+    - traefik.http.routers.wud-https.rule=Host("wud.prod.vdbhome.ovh")
+    - traefik.http.routers.wud-https.entrypoints=websecure
+    - traefik.http.routers.wud-https.service=wud-https-svc
+    - traefik.http.services.wud-https-svc.loadbalancer.server.port=3000
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
