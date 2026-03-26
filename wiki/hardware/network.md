@@ -2,7 +2,7 @@
 
 ## UniFi
 
-[ui](unifi.ui.com)
+[ui](https://unifi.ui.com)
 
 ## IP Allocation
 
