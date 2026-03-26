@@ -7,7 +7,7 @@ vdbhome.ovh {
 
 # Handle all other internet traffic (Forwarding)
 . {
-    forward . 1.1.1.1 8.8.8.8
+    forward . 192.168.0.1 1.1.1.1
     cache 30
     log
     errors
