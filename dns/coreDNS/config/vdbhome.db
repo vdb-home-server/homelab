@@ -1,0 +1,11 @@
+$ORIGIN vdbhome.ovh.
+@   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
+        2023101001 ; serial
+        7200       ; refresh
+        3600       ; retry
+        1209600    ; expire
+        3600       ; minimum
+)
+
+@       IN  A      192.168.0.50
+* IN  A      192.168.0.50

@@ -1,0 +1,14 @@
+# Handle your local home lab domain
+vdbhome.ovh {
+    file /etc/coredns/vdbhome.db
+    log
+    errors
+}
+
+# Handle all other internet traffic (Forwarding)
+. {
+    forward . 1.1.1.1 8.8.8.8
+    cache 30
+    log
+    errors
+}
