@@ -1,6 +1,6 @@
 $ORIGIN vdbhome.ovh.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101003 ; serial
+        2023101004 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
@@ -8,6 +8,8 @@ $ORIGIN vdbhome.ovh.
 )
 
 ; Specific Subdomain Wildcard
-*.prod      IN  A      192.168.0.51
-*.public    IN  A      192.168.0.52
-*.ha        IN  A      192.168.0.53
+*.prod      IN  A       192.168.0.51
+*.public    IN  A       192.168.0.52
+*.ha        IN  A       192.168.0.53
+
+docs        IN  CNAME   homelab.woutvandbossche.workers.dev
