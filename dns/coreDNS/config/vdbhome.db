@@ -7,9 +7,6 @@ $ORIGIN vdbhome.ovh.
         3600       ; minimum
 )
 
-; Global Wildcard (Catch-all)
-* IN  A      192.168.0.50
-
 ; Specific Subdomain Wildcard
 *.prod      IN  A      192.168.0.51
 *.public    IN  A      192.168.0.52
