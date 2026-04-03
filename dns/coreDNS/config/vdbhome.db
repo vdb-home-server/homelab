@@ -1,6 +1,6 @@
 $ORIGIN vdbhome.ovh.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101002 ; serial
+        2023101003 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
