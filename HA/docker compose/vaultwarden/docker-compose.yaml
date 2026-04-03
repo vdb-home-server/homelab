@@ -31,7 +31,8 @@ services:
       - traefik.http.routers.vaultwarden-ws.tls.certresolver=cloudflare
       - traefik.http.routers.vaultwarden-ws.rule=Host("vault.ha.vdbhome.ovh") && PathPrefix("/notifications/hub")
       - traefik.http.routers.vaultwarden-ws.entrypoints=websecure
-      - traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012
+      - traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws-svc
+      - traefik.http.services.vaultwarden-ws-svc.loadbalancer.server.port=3012
 
 networks:
   frontend:
