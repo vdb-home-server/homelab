@@ -1,6 +1,6 @@
 $ORIGIN vdbhome.ovh.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101004 ; serial
+        2023101005 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
@@ -12,4 +12,4 @@ $ORIGIN vdbhome.ovh.
 *.public    IN  A       192.168.0.52
 *.ha        IN  A       192.168.0.53
 
-docs        IN  CNAME   homelab.woutvandbossche.workers.dev
+docs        IN  A   0.0.0.0
