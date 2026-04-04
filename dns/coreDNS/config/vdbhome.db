@@ -1,6 +1,6 @@
 $ORIGIN vdbhome.ovh.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101007 ; serial
+        2023101008 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
@@ -13,3 +13,5 @@ $ORIGIN vdbhome.ovh.
 *.ha        IN  A       192.168.0.53
 
 docs        IN  CNAME   homelab.woutvandbossche.workers.dev.
+traefik-public  IN  CNAME   74938f3a-a20d-483d-acf3-3fd6495b7c7c.cfargotunnel.com.
+transfer  IN  CNAME   74938f3a-a20d-483d-acf3-3fd6495b7c7c.cfargotunnel.com.
