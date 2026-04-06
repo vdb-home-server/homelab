@@ -26,11 +26,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.services.netbox_web.loadBalancer.server.port=8080
-      - traefik.http.routers.netbox_http.service=netbox_web
-      - traefik.http.routers.netbox_http.rule=Host(`netbox.prod.vdbhome.ovh`)
-      - traefik.http.routers.netbox_http.entrypoints=web
-      - traefik.http.routers.netbox_https.service=netbox_web
+      - traefik.http.services.netbox.loadbalancer.server.port=8080
+      - traefik.http.routers.netbox_https.service=netbox
       - traefik.http.routers.netbox_https.rule=Host(`netbox.prod.vdbhome.ovh`)
       - traefik.http.routers.netbox_https.entrypoints=websecure
       - traefik.http.routers.netbox_https.tls=true
