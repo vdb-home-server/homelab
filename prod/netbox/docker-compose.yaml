@@ -17,6 +17,7 @@ services:
     networks:
       frontend:
       netbox_backend:
+      backend:
     volumes:
       - netbox_media:/opt/netbox/netbox/media
       - netbox_reports:/opt/netbox/netbox/reports
@@ -91,6 +92,8 @@ networks:
   netbox_backend:
     driver: bridge
   frontend:
+    external: true
+  backend:
     external: true
 
 volumes:
