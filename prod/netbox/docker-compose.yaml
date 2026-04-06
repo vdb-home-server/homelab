@@ -1,7 +1,7 @@
 ---
 services:
   netbox:
-    image: docker.io/netboxcommunity/netbox:v4.5.2
+    image: docker.io/netboxcommunity/netbox:v4.5-4.0.2
     restart: unless-stopped
     environment:
       - ALLOWED_HOSTS=netbox.prod.vdbhome.ovh
@@ -40,7 +40,7 @@ services:
       - netbox_redis-cache
 
   netbox_worker:
-    image: docker.io/netboxcommunity/netbox:v4.5.2
+    image: docker.io/netboxcommunity/netbox:v4.5-4.0.2
     restart: unless-stopped
     command:
       - /opt/netbox/venv/bin/python
