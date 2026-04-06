@@ -9,7 +9,7 @@ services:
       - DB_NAME=netbox
       - DB_USER=netbox
       - DB_PASSWORD=${DATABASE_PASSWORD}
-       - DB_ENGINE=django.db.backends.postgresql
+      - DB_ENGINE=django.db.backends.postgresql
       - REDIS_HOST=netbox_redis
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - REDIS_CACHE_HOST=netbox_redis-cache
