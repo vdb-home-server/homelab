@@ -139,7 +139,7 @@ services:
       - traefik.http.services.bookshelf-https-svc.loadbalancer.server.port=8787
   #      - traefik.http.routers.bookshelf-https.middlewares=authentik@file
   flaresolverr:
-    image: flaresolverr/flaresolverr:v3.4
+    image: flaresolverr/flaresolverr
     container_name: flaresolverr
     environment:
       - LOG_LEVEL=info
