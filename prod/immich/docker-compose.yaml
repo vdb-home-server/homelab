@@ -50,7 +50,7 @@ services:
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v2.5.3
+    image: ghcr.io/immich-app/immich-machine-learning:v2.7.2
     restart: unless-stopped
 
     volumes:
