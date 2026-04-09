@@ -19,6 +19,10 @@ entryPoints:
           scheme: https
   websecure:
     address: :443
+    transport:
+      respondingTimeouts:
+          readTimeout: 0s
+          idleTimeout: 900s
 
 providers:
   docker:
