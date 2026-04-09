@@ -1,7 +1,7 @@
 ---
 services:
   nextcloud:
-    image: nextcloud:32.0.5-apache
+    image: nextcloud:33
     container_name: nextcloud
     restart: unless-stopped
 
