@@ -25,12 +25,12 @@ services:
     devices:
       - /dev/dri:/dev/dri # pass igpu through
     environment:
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.prod.vdbhome.ovh
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.prod.home.woutvdb.be
     labels:
       - traefik.enable=true
       - traefik.http.routers.jellyfin-https.tls=true
       - traefik.http.routers.jellyfin-https.tls.certresolver=cloudflare
-      - traefik.http.routers.jellyfin-https.rule=Host("jellyfin.prod.vdbhome.ovh")
+      - traefik.http.routers.jellyfin-https.rule=Host("jellyfin.prod.home.woutvdb.be")
       - traefik.http.routers.jellyfin-https.entrypoints=websecure
       - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
       - traefik.http.routers.jellyfin-https.service=jellyfin-https-svc

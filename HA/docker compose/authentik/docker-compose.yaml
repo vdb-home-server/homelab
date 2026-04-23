@@ -17,7 +17,7 @@ services:
     - traefik.http.routers.authentik-https.tls=true
     - traefik.docker.network=frontend
     - traefik.http.routers.authentik-https.tls.certresolver=cloudflare
-    - traefik.http.routers.authentik-https.rule=Host("auth.ha.vdbhome.ovh")
+    - traefik.http.routers.authentik-https.rule=Host("auth.ha.home.woutvdb.be")
     - traefik.http.routers.authentik-https.entrypoints=websecure
     - traefik.http.routers.authentik-https.service=authentik-https-svc
     - traefik.http.services.authentik-https-svc.loadbalancer.server.port=9000

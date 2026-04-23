@@ -5,7 +5,7 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     environment:
-      - DOMAIN=https://vault.ha.vdbhome.ovh
+      - DOMAIN=https://vault.ha.home.woutvdb.be
       - SIGNUPS_ALLOWED=true
       - DATABASE_URL=postgresql://${VAULTWARDEN_USER}:${VAULTWARDEN_PASSWORD}@postgres:5432/${VAULTWARDEN_DB}
       - ADMIN_TOKEN=${ADMIN_TOKEN}
@@ -22,14 +22,14 @@ services:
       # Main ui
       - traefik.http.routers.vaultwarden-https.tls=true
       - traefik.http.routers.vaultwarden-https.tls.certresolver=cloudflare
-      - traefik.http.routers.vaultwarden-https.rule=Host("vault.ha.vdbhome.ovh")
+      - traefik.http.routers.vaultwarden-https.rule=Host("vault.ha.home.woutvdb.be")
       - traefik.http.routers.vaultwarden-https.entrypoints=websecure
       - traefik.http.routers.vaultwarden-https.service=vaultwarden-https-svc
       - traefik.http.services.vaultwarden-https-svc.loadbalancer.server.port=80
       # Websockets
       - traefik.http.routers.vaultwarden-ws.tls=true
       - traefik.http.routers.vaultwarden-ws.tls.certresolver=cloudflare
-      - traefik.http.routers.vaultwarden-ws.rule=Host("vault.ha.vdbhome.ovh") && PathPrefix("/notifications/hub")
+      - traefik.http.routers.vaultwarden-ws.rule=Host("vault.ha.home.woutvdb.be") && PathPrefix("/notifications/hub")
       - traefik.http.routers.vaultwarden-ws.entrypoints=websecure
       - traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws-svc
       - traefik.http.services.vaultwarden-ws-svc.loadbalancer.server.port=3012

@@ -16,7 +16,7 @@ services:
     - traefik.docker.network=frontend
     - traefik.http.routers.handbrake-https.tls=true
     - traefik.http.routers.handbrake-https.tls.certresolver=cloudflare
-    - traefik.http.routers.handbrake-https.rule=Host("handbrake.prod.vdbhome.ovh")
+    - traefik.http.routers.handbrake-https.rule=Host("handbrake.prod.home.woutvdb.be")
     - traefik.http.routers.handbrake-https.entrypoints=websecure
     - traefik.http.routers.handbrake-https.service=handbrake-https-svc
     - traefik.http.services.handbrake-https-svc.loadbalancer.server.port=3000

@@ -3,7 +3,7 @@
 CF_API_TOKEN="YOUR_API_TOKEN"
 CF_ZONE_ID="e69128fbe2f2d4f1063d1e5295a08713"
 
-RECORD_NAME="cluster.vdbhome.ovh"
+RECORD_NAME="cluster.home.woutvdb.be"
 
 TTL=60
 FAIL_THRESHOLD=3
@@ -12,8 +12,8 @@ STATE_FILE="/tmp/cf_failover_state"
 LOG_FILE="/var/log/cf-failover.log"
 
 NODES=(
-  "node1.vdbhome.ovh"
-  "node2.vdbhome.ovh"
+  "node1.home.woutvdb.be"
+  "node2.home.woutvdb.be"
 )
 
 log() {

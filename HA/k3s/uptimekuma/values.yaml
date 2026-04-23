@@ -21,12 +21,12 @@ ingress:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
   hosts:
-    - host: status.ha.vdbhome.ovh
+    - host: status.ha.home.woutvdb.be
       paths:
         - path: /
           pathType: Prefix
   tls:
     - hosts:
-        - status.ha.vdbhome.ovh
+        - status.ha.home.woutvdb.be
 
 resources: {}

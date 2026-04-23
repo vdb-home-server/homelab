@@ -41,7 +41,7 @@ node-ip: <NODE IP>
 advertise-address: <NODE IP>
 
 tls-san:
-  - cluster.vdbhome.ovh
+  - cluster.home.woutvdb.be
   - <NODE DNS>
 ```
 
@@ -56,7 +56,7 @@ sudo cat /var/lib/rancher/k3s/server/token
 and replace `<TOKEN>` with it in the config file.
 
 ```yaml
-server: https://cluster.vdbhome.ovh:6443
+server: https://cluster.home.woutvdb.be:6443
 token: <TOKEN>
 
 node-name: <NODE NAME>
@@ -64,7 +64,7 @@ node-ip: <NODE IP>
 advertise-address: <NODE IP>
 
 tls-san:
-  - cluster.vdbhome.ovh
+  - cluster.home.woutvdb.be
   - <NODE DNS>
 ```
 
@@ -81,4 +81,4 @@ curl -sfL https://get.k3s.io | sh -
 
 ## DNS failover
 
-In the `HA/k3s` directory there is a `failover.sh` script. This makes sure the DNS record of `cluster.vdbhome.ovh` stays alive. In the `NODES` constant, you put the DNS names of the individual nodes. The script checks whether or not the `cluster.vdbhome.ovh` is healthy, if not it changes the record to the first healthy node in the `NODES` constant. When the record isn't to the first node in the variable, it keeps checking that node and when it becomes healthy again it changes back to the first node in the variable (the main node).
+In the `HA/k3s` directory there is a `failover.sh` script. This makes sure the DNS record of `cluster.home.woutvdb.be` stays alive. In the `NODES` constant, you put the DNS names of the individual nodes. The script checks whether or not the `cluster.home.woutvdb.be` is healthy, if not it changes the record to the first healthy node in the `NODES` constant. When the record isn't to the first node in the variable, it keeps checking that node and when it becomes healthy again it changes back to the first node in the variable (the main node).

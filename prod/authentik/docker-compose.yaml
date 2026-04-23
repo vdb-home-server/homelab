@@ -10,7 +10,7 @@ services:
     networks:
     - backend
     environment:
-      - AUTHENTIK_HOST=https://authentik.ha.vdbhome.ovh
+      - AUTHENTIK_HOST=https://authentik.ha.home.woutvdb.be
       - AUTHENTIK_TOKEN=${AUTHENTIK_TOKEN}
       - AUTHENTIK_INSECURE=false
       - AUTHENTIK_LOG_LEVEL=info

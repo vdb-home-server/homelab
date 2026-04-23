@@ -22,13 +22,13 @@ services:
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
       - IMMICH_MACHINE_LEARNING_URL=http://immich-machine-learning:3003
-      - IMMICH_PUBLIC_URL=https://immich.prod.vdbhome.ovh
+      - IMMICH_PUBLIC_URL=https://immich.prod.home.woutvdb.be
 
     labels:
       - traefik.enable=true
       - traefik.http.routers.immich-https.tls=true
       - traefik.http.routers.immich-https.tls.certresolver=cloudflare
-      - traefik.http.routers.immich-https.rule=Host("immich.prod.vdbhome.ovh")
+      - traefik.http.routers.immich-https.rule=Host("immich.prod.home.woutvdb.be")
       - traefik.http.routers.immich-https.entrypoints=websecure
       - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
       - traefik.http.routers.immich-https.service=immich-https-svc

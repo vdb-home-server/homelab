@@ -10,7 +10,7 @@ services:
       - HTTP_X_FORWARDED_PROTO=https  
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pastebin-https.rule=Host(`bin.public.vdbhome.ovh`)"
+      - "traefik.http.routers.pastebin-https.rule=Host(`bin.public.home.woutvdb.be`)"
       - "traefik.http.routers.pastebin-https.entrypoints=websecure"
       - "traefik.http.routers.pastebin-https.tls=true"
       - "traefik.http.routers.pastebin-https.tls.certresolver=cloudflare"

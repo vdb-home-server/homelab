@@ -1,5 +1,5 @@
 # Handle your local home lab domain
-vdbhome.ovh {
+home.woutvdb.be {
     file /etc/coredns/vdbhome.db
     log
     errors

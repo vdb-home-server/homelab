@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.cluster.vdbhome.ovh`)
+    - match: Host(`traefik.cluster.home.woutvdb.be`)
       kind: Rule
       services:
         - name: api@internal

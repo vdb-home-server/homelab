@@ -32,9 +32,9 @@ Some kinds of devices are configured in specific static ranges.
 |192.168.0.22|gelijkvloers|fc:ec:da:f3:c1:3b|Access Point|Access point garage|
 |192.168.0.23|outdoor|f4:e2:c6:10:b6:87|Access Point|Access point terras|
 |192.168.0.50|DNS-Wout|bc:24:11:31:d4:dc|Server|DNS server Wout|
-|192.168.0.51|prod-vm|bc:24:11:d4:4a:9c|Server|Production server (prod.vdbhome.ovh)|
-|192.168.0.52|public|bc:24:11:76:cc:3d|Server|Public server (public.vdbhome.ovh)|
-|192.168.0.53|node1-wout|bc:24:11:22:65:08|Server|HA Docker server (ha.vdbhome.ovh)|
+|192.168.0.51|prod-vm|bc:24:11:d4:4a:9c|Server|Production server (prod.home.woutvdb.be)|
+|192.168.0.52|public|bc:24:11:76:cc:3d|Server|Public server (public.home.woutvdb.be)|
+|192.168.0.53|node1-wout|bc:24:11:22:65:08|Server|HA Docker server (ha.home.woutvdb.be)|
 |192.168.0.81|Sonoff trap zolder|bc:dd:c2:0f:38:f9|IoT|Trapverlichting zolder|
 |192.168.0.108|Device-5b64|36:55:fe:35:5b:64|Client|Laptop Wout|
 |192.168.0.109|Device-c36c|4c:11:bf:20:c3:6c|IoT|Video intercom|

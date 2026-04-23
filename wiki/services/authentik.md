@@ -77,7 +77,7 @@ labels:
   - traefik.http.routers.<router name>.middlewares=authentik@file
 ```
 
-After that create a proxy provider in the authentik dashboard. Chose `Forward auth (single application)` and in the `external host` field type the full url of the webserver (eg: `https://traefik.ha.vdbhome.ovh`) and click finish.
+After that create a proxy provider in the authentik dashboard. Chose `Forward auth (single application)` and in the `external host` field type the full url of the webserver (eg: `https://traefik.ha.home.woutvdb.be`) and click finish.
 Than create an application in the authentik dashboard.
 In `Outposts` select the outpost where the app you want to put behind the proxy auth is running, click on edit and add the application you just created.
 

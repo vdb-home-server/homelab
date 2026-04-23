@@ -27,11 +27,11 @@ spec:
       cert-manager.io/cluster-issuer: cloudflare
 
     hosts:
-      - host: status.cluster.vdbhome.ovh
+      - host: status.cluster.home.woutvdb.be
         paths:
           - path: /
             pathType: Prefix
-      - host: status.vdbhome.ovh
+      - host: status.home.woutvdb.be
         paths:
           - path: /
             pathType: Prefix
@@ -39,5 +39,5 @@ spec:
     tls:
       - secretName: uptime-kuma-tls
         hosts:
-          - status.cluster.vdbhome.ovh
-          - status.vdbhome.ovh
+          - status.cluster.home.woutvdb.be
+          - status.home.woutvdb.be

@@ -1,4 +1,4 @@
-$ORIGIN vdbhome.ovh.
+$ORIGIN home.woutvdb.be.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
         2023101008 ; serial
         7200       ; refresh

@@ -13,7 +13,7 @@ services:
     - traefik.http.routers.uptimekuma-https.middlewares=authentik@file
     - traefik.http.routers.uptimekuma-https.tls=true
     - traefik.http.routers.uptimekuma-https.tls.certresolver=cloudflare
-    - traefik.http.routers.uptimekuma-https.rule=Host("status.ha.vdbhome.ovh")
+    - traefik.http.routers.uptimekuma-https.rule=Host("status.ha.home.woutvdb.be")
     - traefik.http.routers.uptimekuma-https.entrypoints=websecure
     - traefik.http.routers.uptimekuma-https.service=uptimekuma-https-svc
     - traefik.http.services.uptimekuma-https-svc.loadbalancer.server.port=3001

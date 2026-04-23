@@ -17,7 +17,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.prowlarr-https.rule=Host("prowlarr.prod.vdbhome.ovh")
+      - traefik.http.routers.prowlarr-https.rule=Host("prowlarr.prod.home.woutvdb.be")
       - traefik.http.routers.prowlarr-https.entrypoints=websecure
       - traefik.http.routers.prowlarr-https.tls=true
       - traefik.http.routers.prowlarr-https.tls.certresolver=cloudflare
@@ -46,7 +46,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.sonarr-https.rule=Host("sonarr.prod.vdbhome.ovh")
+      - traefik.http.routers.sonarr-https.rule=Host("sonarr.prod.home.woutvdb.be")
       - traefik.http.routers.sonarr-https.entrypoints=websecure
       - traefik.http.routers.sonarr-https.tls=true
       - traefik.http.routers.sonarr-https.tls.certresolver=cloudflare
@@ -75,7 +75,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.radarr-https.rule=Host("radarr.prod.vdbhome.ovh")
+      - traefik.http.routers.radarr-https.rule=Host("radarr.prod.home.woutvdb.be")
       - traefik.http.routers.radarr-https.entrypoints=websecure
       - traefik.http.routers.radarr-https.tls=true
       - traefik.http.routers.radarr-https.tls.certresolver=cloudflare
@@ -103,7 +103,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.jellyseerr-https.rule=Host("jellyseerr.prod.vdbhome.ovh")
+      - traefik.http.routers.jellyseerr-https.rule=Host("jellyseerr.prod.home.woutvdb.be")
       - traefik.http.routers.jellyseerr-https.entrypoints=websecure
       - traefik.http.routers.jellyseerr-https.tls=true
       - traefik.http.routers.jellyseerr-https.tls.certresolver=cloudflare
@@ -131,7 +131,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.bookshelf-https.rule=Host("bookshelf.prod.vdbhome.ovh")
+      - traefik.http.routers.bookshelf-https.rule=Host("bookshelf.prod.home.woutvdb.be")
       - traefik.http.routers.bookshelf-https.entrypoints=websecure
       - traefik.http.routers.bookshelf-https.tls=true
       - traefik.http.routers.bookshelf-https.tls.certresolver=cloudflare
@@ -152,7 +152,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.flaresolverr-https.rule=Host("flaresolverr.prod.vdbhome.ovh")
+      - traefik.http.routers.flaresolverr-https.rule=Host("flaresolverr.prod.home.woutvdb.be")
       - traefik.http.routers.flaresolverr-https.entrypoints=websecure
       - traefik.http.routers.flaresolverr-https.tls=true
       - traefik.http.routers.flaresolverr-https.tls.certresolver=cloudflare

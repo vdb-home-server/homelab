@@ -4,7 +4,7 @@ services:
     image: docker.io/netboxcommunity/netbox:v4.5-4.0.2
     restart: unless-stopped
     environment:
-      - ALLOWED_HOSTS=netbox.prod.vdbhome.ovh
+      - ALLOWED_HOSTS=netbox.prod.home.woutvdb.be
       - DB_HOST=postgres
       - DB_NAME=netbox
       - DB_USER=netbox
@@ -29,7 +29,7 @@ services:
       - traefik.http.services.netbox.loadbalancer.server.port=8080
       - traefik.http.routers.netbox_http.service=netbox
       - traefik.http.routers.netbox_https.service=netbox
-      - traefik.http.routers.netbox_https.rule=Host(`netbox.prod.vdbhome.ovh`)
+      - traefik.http.routers.netbox_https.rule=Host(`netbox.prod.home.woutvdb.be`)
       - traefik.http.routers.netbox_https.entrypoints=websecure
       - traefik.http.routers.netbox_https.tls=true
       - traefik.http.routers.netbox_https.tls.certresolver=cloudflare

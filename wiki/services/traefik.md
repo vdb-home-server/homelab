@@ -18,7 +18,7 @@ labels:
 ```
 
 `<router name http>` can be set to whatever you like, I will use naming convention `<app name>-http` eg `traefik-http`.
-`<url to the app>` should be the full url to the app, including the lxc it's running in, so `<app name>.<prod, test, ha>.vdbhome.ovh` eg `traefik.prod.vdbhome.ovh`.
+`<url to the app>` should be the full url to the app, including the lxc it's running in, so `<app name>.<prod, test, ha>.home.woutvdb.be` eg `traefik.prod.home.woutvdb.be`.
 `<service name http>` should be the name of the service, this can be anything. Our convention is `<app name>-http-svc`, eg `traefik-http-svc`.
 
 ## Best practices
@@ -56,7 +56,7 @@ labels:
 
 `<router name https>` can be set to whatever you like, I will use naming convention `<app name>-https` eg `traefik-https`.
 `<cert resolver name>` should be set to whatever certresolver you want to use that you have specified in the static config file (`./config/traefik.yaml`), in our case it should be set to `cloudflare`.
-`<url to the app>` should be the full url to the app, including the lxc it's running in, so `<app name>.<prod, test, ha>.vdbhome.ovh` eg `traefik.prod.vdbhome.ovh`.
+`<url to the app>` should be the full url to the app, including the lxc it's running in, so `<app name>.<prod, test, ha>.home.woutvdb.be` eg `traefik.prod.home.woutvdb.be`.
 
 ### Making a cert resolver
 
