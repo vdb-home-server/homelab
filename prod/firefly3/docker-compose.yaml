@@ -1,0 +1,65 @@
+services:
+  app:
+    image: fireflyiii/core:latest
+    hostname: app
+    container_name: firefly_iii_core
+    restart: always
+    networks:
+      - frontend 
+      - backend  
+    volumes:
+      - firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.firefly-https.tls=true
+      - traefik.http.routers.firefly-https.tls.certresolver=cloudflare
+      - traefik.http.routers.firefly-https.rule=Host("firefly.prod.home.woutvdb.be")
+      - traefik.http.routers.firefly-https.entrypoints=websecure
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
+      - traefik.http.routers.firefly-https.service=firefly-https-svc
+      - traefik.http.services.firefly-https-svc.loadbalancer.server.port=8080 # even if the port is 80
+
+  importer:
+    image: fireflyiii/data-importer:latest
+    hostname: importer
+    container_name: firefly_iii_importer
+    restart: always
+    networks:
+      - frontend
+      - backend
+    env_file: .importer.env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.firefly-importer-https.tls=true
+      - traefik.http.routers.firefly-importer-https.tls.certresolver=cloudflare
+      - traefik.http.routers.firefly-importer-https.rule=Host("importer.firefly.prod.home.woutvdb.be")
+      - traefik.http.routers.firefly-importer-https.entrypoints=websecure
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network
+      - traefik.http.routers.firefly-importer-https.service=firefly-importer-https-svc
+      - traefik.http.services.firefly-importer-https-svc.loadbalancer.server.port=8080 # even if the port is 80
+    depends_on:
+      - app
+
+  cron:
+    image: alpine
+    container_name: firefly_iii_cron
+    restart: always
+    networks:
+      - backend
+    env_file: .env
+    command: ["sh", "-c", "apk add --no-cache tzdata wget && \
+      cp /usr/share/zoneinfo/$$TZ /etc/localtime && \
+      echo \"*/30 * * * * wget -qO- http://app:8080/api/v1/cron/$$STATIC_CRON_TOKEN\" | crontab - && \
+      crond -f -L /dev/stdout"]
+    depends_on:
+      - app
+
+volumes:
+   firefly_iii_upload:
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
