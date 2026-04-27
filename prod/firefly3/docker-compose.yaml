@@ -30,7 +30,7 @@ services:
       - backend
     env_file: .importer.env
     volumes:
-      -./enable_banking.key:/var/www/html/storage/enable_banking.key:ro
+      - ./enable_banking.key:/var/www/html/storage/enable_banking.key:ro
     labels:
       - traefik.enable=true
       - traefik.http.routers.firefly-importer-https.tls=true
