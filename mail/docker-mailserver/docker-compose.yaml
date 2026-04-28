@@ -16,7 +16,7 @@ services:
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=letsencrypt
     volumes:
-      - ./certs:/etc/letsencrypt:ro
+      - ./certs:/etc/letsencrypt/live:ro
       - ./mail-data:/var/mail
       - ./mail-state:/var/mail-state
       - ./mail-logs:/var/log/mail
