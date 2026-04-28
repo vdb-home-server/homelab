@@ -30,7 +30,7 @@ services:
     restart: always
     command: daemon
     volumes:
-      - ./letsencrypt:/acme.sh
+      - ./certs:/acme.sh
     environment:
       # Replace with your specific DNS provider keys
       - CF_Token=${CF_Token}
