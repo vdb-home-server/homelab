@@ -16,9 +16,22 @@ services:
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=letsencrypt
     volumes:
+      - ./certs:/etc/letsencrypt:ro
       - ./mail-data:/var/mail
       - ./mail-state:/var/mail-state
       - ./mail-logs:/var/log/mail
       - ./config:/tmp/docker-mailserver
       - /etc/localtime:/etc/localtime:ro
     restart: always
+
+  acme-sh:
+    image: neilpang/acme.sh
+    container_name: acme-sh
+    restart: always
+    command: daemon
+    volumes:
+      - ./letsencrypt:/acme.sh
+    environment:
+      # Replace with your specific DNS provider keys
+      - CF_Token=${CF_Token}
+      - CF_Account_ID=${CF_Account_ID}
