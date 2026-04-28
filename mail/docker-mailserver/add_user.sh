@@ -1,0 +1,1 @@
+docker exec -it mailserver setup email add $MAILUSER@woutvdb.be $MAILPASS
