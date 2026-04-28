@@ -1,0 +1,24 @@
+services:
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    container_name: mailserver
+    hostname: mail
+    domainname: woutvdb.be
+    # Ensure it only listens on the Netbird IP to keep it off your local home LAN
+    ports:
+      - "100.66.16.193:25:25"   # SMTP
+      - "100.66.16.193:587:587" # Submission
+      - "100.66.16.193:993:993" # IMAPS
+    environment:
+      - OVERTAKE_IP=193.190.253.116 # Tells DMS your public identity
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_CLAMAV=1 # Save ~1GB RAM by keeping this off
+      - ENABLE_FAIL2BAN=1
+      - SSL_TYPE=letsencrypt
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./mail-logs:/var/log/mail
+      - ./config:/tmp/docker-mailserver
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
