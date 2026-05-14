@@ -39,3 +39,5 @@ services:
       # Replace with your specific DNS provider keys
       - CF_Token=${CF_Token}
       - CF_Account_ID=${CF_Account_ID}
+  extra_hosts:
+      - "mail.woutvdb.be:192.168.0.54"
