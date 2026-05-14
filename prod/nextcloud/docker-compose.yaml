@@ -5,7 +5,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     extra_hosts:
-      mail.woutvdb.be: 192.168.0.54
+      mail.woutvdb.be: 100.66.186.122
 
     depends_on:
       - redis-nextcloud
