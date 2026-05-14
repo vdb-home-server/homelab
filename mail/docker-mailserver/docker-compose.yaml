@@ -10,7 +10,7 @@ services:
       - "587:587" # Submission
       - "993:993" # IMAPS
     environment:
-      - RELAY_HOST=193.190.253.116
+      - RELAY_HOST=100.66.29.185
       - RELAY_PORT=25
       - OVERTAKE_IP=193.190.253.116 # Tells DMS your public identity
       - ENABLE_SPAMASSASSIN=1
