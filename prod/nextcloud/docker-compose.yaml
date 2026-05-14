@@ -4,6 +4,8 @@ services:
     image: nextcloud:33
     container_name: nextcloud
     restart: unless-stopped
+    extra_hosts:
+      mail.woutvdb.be: 192.168.0.54
 
     depends_on:
       - redis-nextcloud
@@ -63,8 +65,6 @@ services:
 
     networks:
       - backend
-  extra_hosts:
-    mail.woutvdb.be: 192.168.0.54
 
 networks:
   frontend:
