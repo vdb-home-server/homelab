@@ -1,0 +1,20 @@
+services:
+  soundtouch-service:
+    image: ghcr.io/gesellix/bose-soundtouch:${SOUNDTOUCH_VERSION:-latest}
+    container_name: soundtouch-service
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+    environment:
+      - DEVICE_HOSTS=192.168.0.247
+      - PORT=8000
+      - HTTPS_PORT=8443
+      - DATA_DIR=/app/data
+      - LOG_PROXY_BODY=false
+      - REDACT_PROXY_LOGS=true
+      - RECORD_INTERACTIONS=true
+      - DISCOVERY_INTERVAL=5m
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
