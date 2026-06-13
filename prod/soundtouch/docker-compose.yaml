@@ -3,11 +3,9 @@ services:
     image: ghcr.io/gesellix/bose-soundtouch:${SOUNDTOUCH_VERSION:-latest}
     container_name: soundtouch-service
     ports:
-      - "8000:8000"
-      - "8443:8443"
+      # - "8000:8000"
     environment:
       - PORT=8000
-      - HTTPS_PORT=8443
       - DATA_DIR=/app/data
       - LOG_PROXY_BODY=false
       - REDACT_PROXY_LOGS=true
@@ -15,5 +13,17 @@ services:
       - DISCOVERY_INTERVAL=5m
     volumes:
       - ./data:/app/data
+    networks:
+      - frontend
     restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.soundtouch-http.rule=Host("bose.home.vdbossche.info")
+      - traefik.http.routers.soundtouch-http.entrypoints=web
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network 
+      - traefik.http.routers.soundtouch-http.service=soundtouch-http-svc
+      - traefik.http.services.soundtouch-http-svc.loadbalancer.server.port=8000
 
+networks:
+  frontend:
+    external: true
