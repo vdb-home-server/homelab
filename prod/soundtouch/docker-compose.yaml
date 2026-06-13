@@ -2,7 +2,7 @@ services:
   soundtouch-service:
     image: ghcr.io/gesellix/bose-soundtouch:${SOUNDTOUCH_VERSION:-latest}
     container_name: soundtouch-service
-    ports:
+    # ports:
       # - "8000:8000"
     environment:
       - PORT=8000
