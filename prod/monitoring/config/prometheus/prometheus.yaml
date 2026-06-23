@@ -22,3 +22,10 @@ scrape_configs:
           instance: 'dns-core-dns'
           type: 'core-dns'
   
+  - job_name: 'mail-node-exporter'
+    static_configs:
+      - targets: ['192.168.0.54:9100']
+        labels:
+          host: 'mail'
+          instance: 'mail-node-exporter'
+          type: 'node-exporter'
