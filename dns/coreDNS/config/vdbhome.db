@@ -1,6 +1,6 @@
 $ORIGIN home.woutvdb.be.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101009 ; serial
+        2023101010 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
@@ -9,12 +9,10 @@ $ORIGIN home.woutvdb.be.
 
 prod      IN  A       192.168.0.51
 public    IN  A       192.168.0.52
-ha        IN  A       192.168.0.53
 
 ; Specific Subdomain Wildcard
 *.prod      IN  A       192.168.0.51
 *.public    IN  A       192.168.0.52
-*.ha        IN  A       192.168.0.53
 
 docs        IN  CNAME   homelab.woutvandbossche.workers.dev.
 traefik-public  IN  CNAME   74938f3a-a20d-483d-acf3-3fd6495b7c7c.cfargotunnel.com.
