@@ -3,6 +3,8 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
+    uid: 1000
+    gid: 1000
     volumes:
       - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
       - ./data/prometheus:/prometheus
@@ -27,6 +29,8 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
+    uid: 1000
+    gid: 1000
     # ports:
     #   - "3000:3000"
     volumes:
