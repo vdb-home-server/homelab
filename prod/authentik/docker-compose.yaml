@@ -1,21 +1,60 @@
----
 services:
-  authentik_proxy:
-    image: ghcr.io/goauthentik/proxy:2026.2
-    container_name: authentik-proxy-prod
-    restart: unless-stopped
-    ports:
-      - "9000:9000"
-      - "9443:9443"
-    networks:
-    - backend
+  server:
+    command: server
+    container_name: authentik-server
     environment:
-      - AUTHENTIK_HOST=https://authentik.ha.home.woutvdb.be
-      - AUTHENTIK_TOKEN=${AUTHENTIK_TOKEN}
-      - AUTHENTIK_INSECURE=false
-      - AUTHENTIK_LOG_LEVEL=info
+      - AUTHENTIK_POSTGRESQL__HOST=postgres
+      - AUTHENTIK_POSTGRESQL__NAME=${AUTHENTIK_DB}
+      - AUTHENTIK_POSTGRESQL__PASSWORD=${AUTHENTIK_PASSWORD}
+      - AUTHENTIK_POSTGRESQL__USER=${AUTHENTIK_USER}
+
+      - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
+
+      - AUTHENTIK_ERROR_REPORTING__ENABLED=true
+    image: ghcr.io/goauthentik/server:2025.12.1
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.authentik-https.tls=true
+    - traefik.docker.network=frontend
+    - traefik.http.routers.authentik-https.tls.certresolver=cloudflare
+    - traefik.http.routers.authentik-https.rule=Host("auth.prod.home.woutvdb.be")
+    - traefik.http.routers.authentik-https.entrypoints=websecure
+    - traefik.http.routers.authentik-https.service=authentik-https-svc
+    - traefik.http.services.authentik-https-svc.loadbalancer.server.port=9000
+    restart: unless-stopped
+    volumes:
+    - ./data:/data:rw
+    - ./custom-templates:/templates:rw
+    networks:
+    - frontend
+    - backend
+
+  worker:
+    command: worker
+    container_name: authentik-worker
+    environment:
+      - AUTHENTIK_POSTGRESQL__HOST=postgres
+      - AUTHENTIK_POSTGRESQL__NAME=${AUTHENTIK_DB}
+      - AUTHENTIK_POSTGRESQL__PASSWORD=${AUTHENTIK_PASSWORD}
+      - AUTHENTIK_POSTGRESQL__USER=${AUTHENTIK_USER}
+
+      - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
+
+      - AUTHENTIK_ERROR_REPORTING__ENABLED=true
+    image: ghcr.io/goauthentik/server:2025.12.1
+    restart: unless-stopped
+    user: root
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - ./data:/data:rw
+    - ./certs:/certs:rw
+    - ./custom-templates:/templates:rw
+    networks:
+      - backend
 
 
 networks:
   backend:
+    external: true
+  frontend:
     external: true
