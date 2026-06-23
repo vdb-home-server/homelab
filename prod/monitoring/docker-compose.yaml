@@ -48,6 +48,20 @@ services:
       - traefik.http.services.grafana-https-svc.loadbalancer.server.port=3000
 
 
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    user: "1000:1000"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+
 networks:
   frontend:
     external: true
