@@ -5,10 +5,20 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+
   - job_name: 'dns-node-exporter'
     static_configs:
       - targets: ['192.168.0.50:9100']
+      - labels:
+          - host: 'dns'
+          - instance: 'dns-node-exporter'
+          - type: 'node-exporter'
+          
   - job_name: 'dns-core-dns'
     static_configs:
       - targets: ['192.168.0.50:9153']
+      - labels:
+          - host: 'dns'
+          - instance: 'dns-core-dns'
+          - type: 'core-dns'
   
