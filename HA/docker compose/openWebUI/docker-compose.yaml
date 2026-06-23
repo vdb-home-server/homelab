@@ -5,7 +5,10 @@ services:
     #   - "8080:8080"
     volumes:
       - ./data:/app/backend/data
-      
+
+    networks:
+      - frontend
+
     labels:
       - traefik.enable=true
       - traefik.http.routers.openwebui-http.rule=Host("ai.home.vdbossche.info")
