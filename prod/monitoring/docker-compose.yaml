@@ -14,6 +14,7 @@ services:
     #   - "9090:9090"
     networks:
       - frontend
+      - monitoring
     labels:
       - traefik.enable=true
       - traefik.http.routers.prometheus-https.tls=true
@@ -37,6 +38,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin # Change this on first login!
     networks:
       - frontend
+      - monitoring
     labels:
       - traefik.enable=true
       - traefik.http.routers.grafana-https.tls=true
@@ -61,7 +63,10 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--path.rootfs=/rootfs'
+    networks:
+      - monitoring
 
 networks:
   frontend:
     external: true
+  monitoring:
