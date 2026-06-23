@@ -1,6 +1,6 @@
 $ORIGIN home.vdbossche.info.
 @   IN  SOA  sns.dns.icann.org. noc.dns.icann.org. (
-        2023101008 ; serial
+        2023101009 ; serial
         7200       ; refresh
         3600       ; retry
         1209600    ; expire
@@ -8,4 +8,5 @@ $ORIGIN home.vdbossche.info.
 )
 
 ; Specific Subdomain Wildcard
-bose      IN  A       192.168.0.51
+bose    IN  CNAME   prod.home.woutvdb.be.
+ai      IN  CNAME   ha.home.woutvdb.be.
