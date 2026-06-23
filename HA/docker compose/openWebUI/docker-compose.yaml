@@ -1,0 +1,24 @@
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main-slim
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - ./data:/app/backend/data
+      - traefik.enable=true
+      - traefik.http.routers.openwebui-http.rule=Host("ai.home.vdbossche.info")
+      - traefik.http.routers.openwebui-http.entrypoints=web
+      - traefik.docker.network=frontend # This makes sure traefik uses the right docker network 
+      - traefik.http.routers.openwebui-http.service=openwebui-http-svc
+      - traefik.http.services.openwebui-http-svc.loadbalancer.server.port=8080
+
+      - traefik.http.routers.openwebui-https.tls=true
+      - traefik.http.routers.openwebui-https.tls.certresolver=cloudflare
+      - traefik.http.routers.openwebui-https.rule=Host("ai.ha.home.woutvdb.be")
+      - traefik.http.routers.openwebui-https.entrypoints=websecure
+      - traefik.docker.network=frontend
+      - traefik.http.routers.openwebui-https.service=openwebui-https-svc
+      - traefik.http.services.openwebui-https-svc.loadbalancer.server.port=8080
+networks:
+  frontend:
+    external: true
