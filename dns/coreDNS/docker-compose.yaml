@@ -7,6 +7,7 @@ services:
     ports:
       - "53:53/udp"
       - "53:53/tcp"
+      - "9153:9153" # CoreDNS metrics endpoint
     volumes:
       - ./config:/etc/coredns
     command: -conf /etc/coredns/Corefile

@@ -19,4 +19,5 @@ home.vdbossche.info {
     cache 30
     log
     errors
+    prometheus :9153
 }
