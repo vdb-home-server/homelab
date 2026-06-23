@@ -3,12 +3,14 @@ home.woutvdb.be {
     file /etc/coredns/vdbhome.db
     log
     errors
+    reload
 }
 
 home.vdbossche.info {
     file /etc/coredns/vdbossche.db
     log
     errors
+    reload
 }
 
 # Handle all other internet traffic (Forwarding)
