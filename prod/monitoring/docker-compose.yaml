@@ -1,0 +1,51 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    # ports:
+    #   - "9090:9090"
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.prometheus-https.tls=true
+      - traefik.http.routers.prometheus-https.tls.certresolver=cloudflare
+      - traefik.http.routers.prometheus-https.rule=Host("prometheus.prod.home.woutvdb.be")
+      - traefik.http.routers.prometheus-https.entrypoints=websecure
+      - traefik.docker.network=frontend
+      - traefik.http.routers.prometheus-https.service=prometheus-https-svc
+      - traefik.http.services.prometheus-https-svc.loadbalancer.server.port=9090
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Change this on first login!
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana-https.tls=true
+      - traefik.http.routers.grafana-https.tls.certresolver=cloudflare
+      - traefik.http.routers.grafana-https.rule=Host("grafana.prod.home.woutvdb.be")
+      - traefik.http.routers.grafana-https.entrypoints=websecure
+      - traefik.docker.network=frontend
+      - traefik.http.routers.grafana-https.service=grafana-https-svc
+      - traefik.http.services.grafana-https-svc.loadbalancer.server.port=3000
+
+
+networks:
+  frontend:
+    external: true
