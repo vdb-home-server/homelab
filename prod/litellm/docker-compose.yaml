@@ -28,7 +28,10 @@ services:
       start_period: 40s  # Wait 40 seconds after container start before beginning health checks
     networks:
       - frontend
+      - backend
 
 networks:
   frontend:
+    external: true
+  backend:
     external: true
