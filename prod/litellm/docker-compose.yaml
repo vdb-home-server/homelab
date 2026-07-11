@@ -1,0 +1,32 @@
+services:
+  litellm:
+    build:
+      context: .
+      args:
+        target: runtime
+    image: docker.litellm.ai/berriai/litellm:main-stable
+    # volumes:
+    #   - ./config.yaml:/app/config.yaml
+    # command:
+    #   - "--config=/app/config.yaml"
+    # ports:
+    #   - "4000:4000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.litellm.rule=Host(`litellm.prod.home.woutvdb.be`)"
+      - "traefik.http.routers.litellm.entrypoints=websecure"
+      - "traefik.http.routers.litellm.tls.certresolver=cloudflare"
+      - "traefik.http.services.litellm.loadbalancer.server.port=4000"
+    environment:
+      DATABASE_URL: "postgresql://litellm:${DATABASE_PASSWORD}@postgres:5432/litellm"
+      STORE_MODEL_IN_DB: "True" # allows adding models to proxy via UI
+    env_file:
+      - .env # Load local .env file
+    healthcheck:  # Defines the health check configuration for the container
+      test:
+        - CMD-SHELL
+        - python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:4000/health/liveliness')"  # Command to execute for health check
+      interval: 30s  # Perform health check every 30 seconds
+      timeout: 10s   # Health check command times out after 10 seconds
+      retries: 3     # Retry up to 3 times if health check fails
+      start_period: 40s  # Wait 40 seconds after container start before beginning health checks
