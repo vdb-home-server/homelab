@@ -1,9 +1,5 @@
 services:
   litellm:
-    build:
-      context: .
-      args:
-        target: runtime
     image: docker.litellm.ai/berriai/litellm:main-stable
     # volumes:
     #   - ./config.yaml:/app/config.yaml
@@ -30,3 +26,9 @@ services:
       timeout: 10s   # Health check command times out after 10 seconds
       retries: 3     # Retry up to 3 times if health check fails
       start_period: 40s  # Wait 40 seconds after container start before beginning health checks
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
