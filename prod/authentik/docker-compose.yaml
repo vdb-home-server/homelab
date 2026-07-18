@@ -11,7 +11,7 @@ services:
       - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
 
       - AUTHENTIK_ERROR_REPORTING__ENABLED=true
-    image: ghcr.io/goauthentik/server:2025.12.1
+    image: ghcr.io/goauthentik/server:2026.2.6
     labels:
     - traefik.enable=true
     - traefik.http.routers.authentik-https.tls=true
@@ -41,7 +41,7 @@ services:
       - AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}
 
       - AUTHENTIK_ERROR_REPORTING__ENABLED=true
-    image: ghcr.io/goauthentik/server:2025.12.1
+    image: ghcr.io/goauthentik/server:2026.2.6
     restart: unless-stopped
     user: root
     volumes:
