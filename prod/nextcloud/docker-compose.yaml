@@ -1,7 +1,7 @@
 ---
 services:
   nextcloud:
-    image: nextcloud:33
+    image: nextcloud:34
     container_name: nextcloud
     restart: unless-stopped
     extra_hosts:
