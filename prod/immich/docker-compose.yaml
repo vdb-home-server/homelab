@@ -1,7 +1,7 @@
 services:
   immich-server:
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v2.7.2
+    image: ghcr.io/immich-app/immich-server:v3.0.3
     restart: unless-stopped
 
     devices:
@@ -23,6 +23,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - IMMICH_MACHINE_LEARNING_URL=http://immich-machine-learning:3003
       - IMMICH_PUBLIC_URL=https://immich.prod.home.woutvdb.be
+      - DB_VECTOR_EXTENSION=pgvector
 
     labels:
       - traefik.enable=true
@@ -50,7 +51,7 @@ services:
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v2.7.2
+    image: ghcr.io/immich-app/immich-machine-learning:v3.0.3
     restart: unless-stopped
 
     volumes:
