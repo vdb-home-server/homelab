@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  dokploy-postgres:
+    image: postgres:16
+    networks:
+      - dokploy-network
+    environment:
+      POSTGRES_USER: dokploy
+      POSTGRES_DB: dokploy
+      POSTGRES_PASSWORD_FILE: /run/secrets/dokploy_postgres_password
+    secrets:
+      - dokploy_postgres_password
+    volumes:
+      - dokploy-postgres:/var/lib/postgresql/data
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+
+  dokploy:
+    image: dokploy/dokploy:latest
+    networks:
+      - dokploy-network
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/dokploy_postgres_password
+    secrets:
+      - dokploy_postgres_password
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/dokploy:/etc/dokploy
+      - dokploy-data:/root/.docker
+    ports:
+      - target: 3000
+        published: 3000
+        mode: host
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      update_config:
+        parallelism: 1
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+
+  dokploy-traefik:
+    image: traefik:v3.6.7
+    networks:
+      - dokploy-network
+    volumes:
+      - /etc/dokploy/traefik/traefik.yml:/etc/traefik/traefik.yml
+      - /etc/dokploy/traefik/dynamic:/etc/dokploy/traefik/dynamic
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: udp
+        mode: host
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  dokploy-postgres:
+  dokploy-data:
+
+secrets:
+  dokploy_postgres_password:
+    external: true
